@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const GuessNumberGame = () => {
   const [targetNumber, setTargetNumber] = useState(0);
-  const [guess, setGuess] = useState('');
-  const [message, setMessage] = useState('Start guessing...');
+  const [guess, setGuess] = useState("");
+  const [message, setMessage] = useState("Start guessing...");
   const [attempts, setAttempts] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
 
   // Initialize game
   const startNewGame = () => {
     setTargetNumber(Math.floor(Math.random() * 100) + 1);
-    setGuess('');
-    setMessage('Enter a number between 1 and 100');
+    setGuess("");
+    setMessage("Enter a number between 1 and 100");
     setAttempts(0);
     setIsGameOver(false);
   };
@@ -25,7 +25,7 @@ const GuessNumberGame = () => {
     const numGuess = parseInt(guess);
 
     if (isNaN(numGuess) || numGuess < 1 || numGuess > 100) {
-      setMessage('Please enter a valid number between 1 and 100');
+      setMessage("Please enter a valid number between 1 and 100");
       return;
     }
 
@@ -36,20 +36,26 @@ const GuessNumberGame = () => {
       setMessage(`🎉 Correct! It was ${targetNumber}.`);
       setIsGameOver(true);
     } else if (numGuess > targetNumber) {
-      setMessage('📈 Too high! Try a lower number.');
+      setMessage("📈 Too high! Try a lower number.");
     } else {
-      setMessage('📉 Too low! Try a higher number.');
+      setMessage("📉 Too low! Try a higher number.");
     }
-    setGuess('');
+    setGuess("");
   };
 
   return (
-<div className="min-h-screen bg-[url('/bga.jpg')] bg-cover bg-center flex items-center justify-center p-4">      <div className="max-w-md w-full rounded-2xl bg-transparent backdrop-blur-md shadow-2xl p-8 border border-slate-700 text-center">
-        <h1 className="text-3xl font-bold mb-2 text-slate-900">Guess The Number</h1>
+    <div className="min-h-screen bg-[url('/bga.jpg')] bg-cover bg-center flex items-center justify-center p-4">
+      {" "}
+      <div className="max-w-md w-full rounded-2xl bg-transparent backdrop-blur-md shadow-2xl p-8 border border-slate-700 text-center">
+        <h1 className="text-3xl font-bold mb-2 text-slate-900">
+          Guess The Number
+        </h1>
         <p className="text-slate-700 mb-6">Can you find the secret number?</p>
 
         <div className="bg-slate-700 rounded-lg py-4 px-2 mb-6">
-          <p className={`text-lg font-medium ${isGameOver ? 'text-green-400 animate-bounce' : 'text-slate-200'}`}>
+          <p
+            className={`text-lg font-medium ${isGameOver ? "text-green-400 animate-bounce" : "text-slate-200"}`}
+          >
             {message}
           </p>
           <p className="text-sm text-slate-200 mt-2">Attempts: {attempts}</p>
@@ -58,7 +64,6 @@ const GuessNumberGame = () => {
         {!isGameOver ? (
           <form onSubmit={handleGuess} className="space-y-4">
             <input
-            
               type="number"
               value={guess}
               onChange={(e) => setGuess(e.target.value)}
